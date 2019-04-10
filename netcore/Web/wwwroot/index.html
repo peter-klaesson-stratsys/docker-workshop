@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>
+        Increment or decrement!
+    </title>
+</head>
+<body>
+Increase or decrease, your choice!
+<br>
+<button id="dec_btn">-</button>
+# clicks: <span id="counter">loading</span>
+<button id="inc_btn">+</button>
+<script>
+    fetch('api/counter').then(function(response){return response.text()})
+        .then(function(val){
+            document.getElementById("counter").innerText = val;
+        });
+    document.getElementById("inc_btn").onclick = function(){ fetch('api/counter/increase', { method: 'POST' })
+        .then(function(response){return response.text()})
+        .then(function(val){
+            document.getElementById("counter").innerText = val;
+        })};
+
+    document.getElementById("dec_btn").onclick = function(){ fetch('api/counter/decrease', { method: 'POST' })
+        .then(function(response){return response.text()})
+        .then(function(val){
+            document.getElementById("counter").innerText = val;
+        })};
+</script>
+</body>
+</html>
